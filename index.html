@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Brionize - Portfolio</title>
+    <title>Brionize - Dominique Gerritsen</title>
+    <meta name="description" content="Gebruikte laptops een tweede leven geven, eigen tools bouwen, en technologie toegankelijk maken.">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <style>
         :root {
             --bg-color: #121212;
+            --bg-card: #1e1e1e;
             --text-color: #e0e0e0;
+            --text-muted: #999;
             --accent-color: #8886ff;
+            --accent-dim: rgba(136, 134, 255, 0.1);
             --border-color: #333;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         header {
@@ -27,99 +33,258 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        nav h1 {
-            color: var(--accent-color);
-            font-size: 1.5rem;
-        }
+        nav h1 { color: var(--accent-color); font-size: 1.5rem; margin: 0; }
 
-        nav a {
-            color: var(--text-color);
+        .nav-links a {
+            color: var(--text-muted);
             text-decoration: none;
-            margin: 0 1rem;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
             transition: color 0.3s;
         }
 
-        nav a:hover {
-            color: var;
-        }
+        .nav-links a:hover { color: var(--accent-color); }
 
         section {
             padding: 4rem 2rem;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         section h2 {
             color: var(--accent-color);
-            margin-bottom: 1rem;
+            margin-bottom: 0.3rem;
+            font-size: 1.5rem;
         }
 
-        .projects {
+        .section-sub {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+        }
+
+        .hero-name {
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin: 0 0 0.2rem;
+            color: var(--text-color);
+        }
+
+        .hero-title {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin: 0 0 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .hero-tag {
+            background: var(--accent-dim);
+            color: var(--accent-color);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            border: 1px solid rgba(136, 134, 255, 0.15);
+        }
+
+        /* About */
+        .about-columns {
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
         }
 
-        .project {
-            background-color: #1e1e1e;
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: transform 0.2s;
-        }
+        .about-text p { color: var(--text-muted); margin: 0 0 1rem; }
 
-        .project:hover {
-            transform: translateY(-5px);
-        }
-
-        .project h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .contact {
-            display: flex;
-            flex-direction: column;
+        .about-values {
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 1rem;
         }
 
-        .contact a {
-            display: inline-block;
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s;
+        .value-card {
+            background: var(--bg-card);
+            padding: 1.2rem 1.4rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
         }
 
-        .contact a:hover {
+        .value-card h4 {
+            margin: 0 0 0.3rem;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .value-card p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Projects */
+        .projects {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .project {
+            background-color: var(--bg-card);
+            padding: 1.4rem 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .project:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .project h3 { margin: 0; font-size: 1.1rem; }
+
+        .project-type {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             color: var(--accent-color);
+            background: var(--accent-dim);
+            padding: 2px 8px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .project p { margin: 0.3rem 0 0.8rem; color: var(--text-muted); font-size: 0.93rem; }
+
+        .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.73rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 0.8rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+
+        .project-link:hover { text-decoration: underline; }
+
+        /* Stack */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stack-item {
+            background: var(--bg-card);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .stack-item h4 { margin: 0 0 0.2rem; font-size: 0.9rem; }
+        .stack-item p { margin: 0; color: var(--text-muted); font-size: 0.85rem; }
+
+        /* Contact */
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.65rem 1.3rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s, color 0.3s;
+        }
+
+        .contact-links a:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
         }
 
         footer {
             text-align: center;
             padding: 2rem;
-            color: #666;
-            font-size: 0.9rem;
+            color: #555;
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
         }
 
-        / Responsive /
+        footer a { color: var(--accent-color); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+
+        /* Responsive */
         @media (min-width: 768px) {
-            .projects {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .projects { grid-template-columns: repeat(2, 1fr); }
+            .about-columns { grid-template-columns: 3fr 2fr; }
+            .about-values { grid-template-columns: 1fr; }
+            .stack-grid { grid-template-columns: repeat(4, 1fr); }
         }
 
         @media (min-width: 1024px) {
-            .projects {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .projects { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            nav { flex-direction: column; gap: 0.5rem; }
+            .nav-links a { margin-left: 0.6rem; }
+            .hero { padding: 3rem 1rem 2rem; }
+            .hero-name { font-size: 1.8rem; }
+            .stack-grid { grid-template-columns: 1fr; }
+            .contact-links { flex-direction: column; }
         }
     </style>
 </head>
@@ -127,55 +292,176 @@
     <header>
         <nav>
             <h1>Brionize</h1>
-            <div>
-                <a href="#home">Home</a>
-                <a href="#projects">Projecten</a>
-                <a href="#about">Over mij</a>
+            <div class="nav-links">
+                <a href="#over">Over</a>
+                <a href="#projecten">Projecten</a>
+                <a href="#stack">Stack</a>
                 <a href="#contact">Contact</a>
             </div>
         </nav>
     </header>
 
-    <section id="home">
-        <h2>Welkom bij mijn portfolio</h2>
-        <p>
-            Ik ben Brionize, een full-stack developer met ervaring in DELPHI en webtechnologieën. 
-            Dit is mijn persoonlijke portfolio waar je mijn werk en projecten kunt ontdekken.
-        </p>
-    </section>
-
-    <section id="projects" class="projects">
-        <div class="project">
-            <h3>DELPHI</h3>
-            <p>DELPHI is mijn hoofdproject waarin ik een krachtige development platform bouw met focus op performance en modulaire architectuur.</p>
-        </div>
-        <div class="project">
-            <h3>Brionicle</h3>
-            <p>Brionicle is een tool voor het beheren van configuraties en scripts, ontworpen voor efficiëntie en schaalbaarheid.</p>
-        </div>
-        <div class="project">
-            <h3>SysDash</h3>
-            <p>SysDash is een dashboardtool voor het monitoren van systemen en processen, gebouwd met real-time data visualisatie.</p>
+    <section id="home" class="hero">
+        <div class="hero-name">Dominique Gerritsen</div>
+        <div class="hero-title">Initiatiefnemer Brionize</div>
+        <p>Computers een tweede leven geven, eigen tools bouwen, en technologie toegankelijk maken voor iedereen. Al meer dan 5 jaar, als hobby en uit overtuiging.</p>
+        <div class="hero-tags">
+            <span class="hero-tag">Refurbished hardware</span>
+            <span class="hero-tag">Linux</span>
+            <span class="hero-tag">Selfhosted</span>
+            <span class="hero-tag">Open Source</span>
+            <span class="hero-tag">Lokale AI</span>
         </div>
     </section>
 
-    <section id="about">
+    <section id="over">
         <h2>Over mij</h2>
-        <p>
-            Ik ben een ervaren developer met een passie voor innovatie en technologie. Mijn werkgezondheid en kwaliteit staan centraal, 
-            en ik ben altijd op zoek naar manieren om mijn vaardigheden te verbeteren en nieuwe technologieën te verkennen.
-        </p>
+        <div class="about-columns">
+            <div class="about-text">
+                <p>Mijn interesse ligt bij computers, hergebruik en het vinden van praktische oplossingen voor technische problemen. Ik kijk graag naar wat een apparaat nog kan, ook wanneer het als te oud of te traag wordt gezien. Een computer hoeft voor mij niet direct vervangen te worden: met de juiste aandacht kan hij vaak nog jarenlang bruikbaar blijven.</p>
+                <p>Met Brionize geef ik gebruikte laptops en desktops een tweede leven. Ik onderzoek waar problemen vandaan komen, knap apparaten op en optimaliseer ze voor verder gebruik. Wanneer een computer niet meer bruikbaar is, probeer ik onderdelen opnieuw in te zetten.</p>
+                <p>Naast het werken aan computers help ik mensen om er gemakkelijker mee om te gaan. Vooral voor ouderen en mensen die minder vertrouwd zijn met technologie kan persoonlijke begeleiding veel verschil maken. Een technisch probleem is pas goed opgelost wanneer de gebruiker ook begrijpt hoe die verder kan.</p>
+                <p>Daarnaast werk ik bij het Gazelle Experience Testcenter in Amersfoort, waar persoonlijk advies centraal staat. Die ervaring sluit aan op mijn technische activiteiten: luisteren, doorvragen en ingewikkelde informatie begrijpelijk maken.</p>
+            </div>
+            <div class="about-values">
+                <div class="value-card">
+                    <h4>Hergebruik</h4>
+                    <p>Wat anderen weggooien, krijgt bij mij een tweede kans. Repareren en optimaliseren boven vervangen.</p>
+                </div>
+                <div class="value-card">
+                    <h4>Toegankelijkheid</h4>
+                    <p>Niet iedereen heeft budget voor nieuw. Betaalbare oplossingen die aansluiten op wat iemand nodig heeft.</p>
+                </div>
+                <div class="value-card">
+                    <h4>Transparantie</h4>
+                    <p>Eerlijk beschreven, zonder gedoe. Wat was het probleem? Wat is de oplossing? Wat kan beter?</p>
+                </div>
+                <div class="value-card">
+                    <h4>Zelfredzaamheid</h4>
+                    <p>Stap voor stap uitleggen zodat je het zelf kunt. Hulp die je sterker maakt, niet afhankelijk.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="projecten">
+        <h2>Projecten</h2>
+        <p class="section-sub">Naast hardware bouw ik mijn eigen software. Alles open-source, alles selfhosted, geen betaalde diensten.</p>
+        <div class="projects">
+            <div class="project">
+                <div class="project-header">
+                    <h3>Brionize.nl</h3>
+                    <span class="project-type">Webshop</span>
+                </div>
+                <p>Betaalbare tech, eerlijk beschreven. Gebruikte laptops met Linux — transparant en zonder gedoe. Wordt binnenkort gelanceerd.</p>
+                <div class="project-tags">
+                    <span class="tag">Linux</span>
+                    <span class="tag">Refurbished</span>
+                    <span class="tag">E-commerce</span>
+                </div>
+                <a href="https://www.brionize.nl" target="_blank" rel="noopener" class="project-link">brionize.nl &rarr;</a>
+            </div>
+            <div class="project">
+                <div class="project-header">
+                    <h3>DELPHI</h3>
+                    <span class="project-type">PWA</span>
+                </div>
+                <p>Mijn eigen AI Command Center. Chat met lokale LLM's, beheer GitHub-repos, review code en deploy naar de VPS — vanuit een zelfgebouwd dashboard.</p>
+                <div class="project-tags">
+                    <span class="tag">Ollama</span>
+                    <span class="tag">Caddy</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Oracle ARM64</span>
+                </div>
+                <a href="https://github.com/brionize-nl/DELPHI" target="_blank" rel="noopener" class="project-link">GitHub &rarr;</a>
+            </div>
+            <div class="project">
+                <div class="project-header">
+                    <h3>Brionicle</h3>
+                    <span class="project-type">PWA</span>
+                </div>
+                <p>Interactieve 3D wereldbol met live camera's. Ontdek plekken wereldwijd en plan roadtrips — gebouwd met Leaflet, zonder frameworks.</p>
+                <div class="project-tags">
+                    <span class="tag">Leaflet</span>
+                    <span class="tag">Vanilla JS</span>
+                    <span class="tag">Live cameras</span>
+                </div>
+                <a href="https://github.com/brionize-nl/Brionicle" target="_blank" rel="noopener" class="project-link">GitHub &rarr;</a>
+            </div>
+            <div class="project">
+                <div class="project-header">
+                    <h3>SysDash</h3>
+                    <span class="project-type">Monitoring</span>
+                </div>
+                <p>Selfhosted server monitoring. Python agents houden alles in de gaten, Supabase slaat data op, Discord stuurt alerts als er iets misgaat.</p>
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Supabase</span>
+                    <span class="tag">n8n</span>
+                    <span class="tag">Discord</span>
+                </div>
+                <a href="https://github.com/brionize-nl/sysdash" target="_blank" rel="noopener" class="project-link">GitHub &rarr;</a>
+            </div>
+            <div class="project">
+                <div class="project-header">
+                    <h3>AI Framework</h3>
+                    <span class="project-type">Framework</span>
+                </div>
+                <p>Tools, patronen en workflows voor AI-gestuurde development. De aanpak die ik dagelijks gebruik om sneller en slimmer te bouwen.</p>
+                <div class="project-tags">
+                    <span class="tag">AI</span>
+                    <span class="tag">Workflows</span>
+                    <span class="tag">Automation</span>
+                </div>
+                <a href="https://github.com/brionize-nl/brionize-ai-framework" target="_blank" rel="noopener" class="project-link">GitHub &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="stack">
+        <h2>Tech Stack</h2>
+        <p class="section-sub">Geen betaalde diensten, geen vendor lock-in. Alles draait op gratis en open tooling.</p>
+        <div class="stack-grid">
+            <div class="stack-item">
+                <h4>Frontend</h4>
+                <p>HTML, CSS, JS — vanilla, geen frameworks</p>
+            </div>
+            <div class="stack-item">
+                <h4>Backend</h4>
+                <p>Python, Caddy reverse proxy</p>
+            </div>
+            <div class="stack-item">
+                <h4>AI</h4>
+                <p>Ollama — lokale LLM's, gratis en onbeperkt</p>
+            </div>
+            <div class="stack-item">
+                <h4>Infra</h4>
+                <p>Oracle ARM64 VPS, Linux, GitHub</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
         <h2>Contact</h2>
-        <p>Wil je contact met me opnemen? Laat me weten!</p>
-        <a href="https://github.com/brionize" target="_blank">GitHub</a>
-        <a href="mailto:brionize@example.com">Email</a>
+        <p>Wil je samenwerken, heb je een vraag, of ben je op zoek naar een betaalbare laptop met Linux?</p>
+        <div class="contact-links">
+            <a href="https://github.com/brionize-nl" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                GitHub
+            </a>
+            <a href="mailto:info@brionize.nl">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+                info@brionize.nl
+            </a>
+            <a href="https://www.brionize.nl" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                brionize.nl
+            </a>
+        </div>
     </section>
 
     <footer>
-        &copy; 2023 Brionize. All rights reserved.
+        &copy; 2025 Brionize &middot; Dominique Gerritsen &middot; <a href="https://www.brionize.nl">brionize.nl</a>
     </footer>
 </body>
 </html>
